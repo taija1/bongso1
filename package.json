@@ -1,7 +1,9 @@
-
 {
     "name": "bongso1",
     "scripts": {
         "dev": "nodemon"
+    },
+    "dependencies": {
+        "docker-compose": "^1.1.0"
     }
 }

@@ -1,3 +1,16 @@
+/* Core variables */
+:root {
+    --color-primary: rgb(88, 51, 153);
+    --color-secondary: rgb(128, 90, 213);
+    --color-white: rgba(255, 255, 255, 0.9);
+    --shadow-lg: 0 8px 32px rgba(31, 38, 135, 0.3);
+}
+
+/* Base styles */
+* {
+    cursor: default;
+}
+
 /* Core Styles */
 /* Gradient Animation Background */
 .gradient-bg {
@@ -24,17 +37,33 @@
     animation: gradientBG 15s ease infinite;
 }
 
+section {
+    min-height: 100vh;
+    width: 100%;
+    background: url("http://codingstella.com/wp-content/uploads/2024/01/download-8-scaled.jpeg") no-repeat center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Glass card effect */
 .glass-effect {
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease;
+}
+
+.glass-effect:hover {
+    transform: translateY(-5px);
 }
 
 .glass-input {
     background: rgba(52, 41, 85, 0.1);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-md);
     transition: all 0.3s ease;
 }
 
@@ -45,10 +74,100 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, 
-        rgba(88, 51, 153, 0.9) 0%,
-        rgba(128, 90, 213, 0.9) 100%);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    background: var(--gradient-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+/* Form Groups */
+.form-group {
+    border-radius: var(--radius-sm);
+    transition: transform 0.3s ease;
+}
+
+/* Blob Effects */
+.blob {
+    border-radius: var(--radius-full);
+    filter: blur(20px);
+    transition: all 0.3s ease;
+}
+
+/* Custom Input Styles */
+.inputbox {
+    position: relative;
+    margin: 30px 0;
+    border-bottom: 2px solid var(--color-white);
+}
+
+.inputbox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-white);
+    cursor: text;
+}
+
+.inputbox label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: var(--color-white);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.inputbox input:focus ~ label,
+.inputbox input:valid ~ label {
+    top: -5px;
+}
+
+.inputbox input:focus ~ label,
+.inputbox input:not(:placeholder-shown) ~ label {
+    transform: translateY(-1.5rem);
+    font-size: 0.875rem;
+    color: var(--color-secondary);
+}
+
+.inputbox input:focus ~ ion-icon {
+    color: var(--color-secondary);
+}
+
+.inputbox input:invalid {
+    border-bottom-color: rgb(239, 68, 68);
+}
+
+.inputbox input:valid {
+    border-bottom-color: rgb(34, 197, 94);
+}
+
+.form-box {
+    box-shadow: var(--shadow-lg);
+    animation: formAppear 0.6s ease-out;
+}
+
+/* Interactive elements */
+button, a, input[type="checkbox"] {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: underline;
 }
 
 /* Animations */
@@ -59,14 +178,89 @@
     100% { background-position: 0% 50% }
 }
 
+@keyframes formAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-100%); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-100%); }
+}
+
+@keyframes toastIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-1rem);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes toastOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-fadeOut {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
 /* Có thể thêm hiệu ứng hover để tăng tương tác */
 .gradient-bg:hover {
     animation-duration: 8s; /* Tăng tốc độ khi hover */
 }
 
+/* Toast Styles */
+.toast {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    font-weight: 500;
+    z-index: 50;
+    opacity: 0;
+    transform: translateY(-1rem);
+    animation: toastIn 0.3s ease forwards;
+}
+
+.toast.success {
+    background-color: rgba(34, 197, 94, 0.9);
+}
+
+.toast.error {
+    background-color: rgba(239, 68, 68, 0.9);
+}
+
 /* Responsive Design */
 @media (max-width: 640px) {
     .glass-effect {
+        border-radius: var(--radius-md);
         margin: 1rem;
         padding: 1.5rem;
     }
@@ -79,4 +273,59 @@
 
 .glass-text {
     color: rgba(52, 41, 85, 0.9);
+}
+
+/* Validation Styles */
+.validation-hint {
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.validation-hint.show {
+    transform: translateY(0);
+}
+
+input.valid {
+    border-bottom-color: rgb(34, 197, 94) !important;
+}
+
+input.invalid {
+    border-bottom-color: rgb(239, 68, 68) !important;
+}
+
+/* Password Toggle Button Fix */
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-wrapper ion-icon[name="lock-closed-outline"] {
+    position: absolute;
+    right: 2.5rem;
+    z-index: 10;
+}
+
+.password-toggle-btn {
+    position: absolute !important;
+    right: 0.5rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 2rem !important;
+    height: 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 20 !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    pointer-events: all !important;
+}
+
+.password-toggle-btn:hover {
+    color: white !important;
+}
+
+.password-toggle-btn:focus {
+    outline: none !important;
 }
