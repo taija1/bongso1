@@ -1,0 +1,82 @@
+/* Core Styles */
+/* Gradient Animation Background */
+.gradient-bg {
+    /* Multiple layers của gradient tạo hiệu ứng depth */
+    background: 
+        /* Layer 1: Gradient tròn màu hồng nhạt */
+        radial-gradient(circle at 10% 20%, 
+            rgb(255, 200, 224) 0%, /* Hồng pastel */
+            transparent 40%),
+        /* Layer 2: Gradient tròn màu xanh nhạt */
+        radial-gradient(circle at 80% 30%, 
+            rgb(210, 220, 255) 0%, /* Xanh pastel */
+            transparent 40%),
+        /* Layer 3: Gradient chính nền */
+        linear-gradient(135deg, 
+            rgb(250, 237, 255) 0%, /* Tím rất nhạt */
+            rgb(255, 241, 245) 100% /* Hồng rất nhạt */
+        );
+    
+    /* Thiết lập kích thước background lớn hơn container */
+    background-size: 200% 200%;
+    
+    /* Animation chuyển động */
+    animation: gradientBG 15s ease infinite;
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+}
+
+.glass-input {
+    background: rgba(52, 41, 85, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+    background: rgba(52, 41, 85, 0.12);
+    border-color: rgba(128, 90, 213, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, 
+        rgba(88, 51, 153, 0.9) 0%,
+        rgba(128, 90, 213, 0.9) 100%);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+/* Keyframes định nghĩa chuyển động */
+@keyframes gradientBG {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
+/* Có thể thêm hiệu ứng hover để tăng tương tác */
+.gradient-bg:hover {
+    animation-duration: 8s; /* Tăng tốc độ khi hover */
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .glass-effect {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Text Styles */
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.glass-text {
+    color: rgba(52, 41, 85, 0.9);
+}

@@ -1,0 +1,8 @@
+{
+    "watch": [
+        "*.php",
+        "assets/*"
+    ],
+    "ext": "php,css,js,html",
+    "exec": "php -S localhost:8000"
+}

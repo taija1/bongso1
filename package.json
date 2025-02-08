@@ -1,0 +1,7 @@
+
+{
+    "name": "bongso1",
+    "scripts": {
+        "dev": "nodemon"
+    }
+}
